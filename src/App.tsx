@@ -48,19 +48,19 @@ function App() {
     {
       title: 'Compilando Já',
       description: 'Website para uma empresa especializada em educação tecnológica.',
-      image: '/src/img/trabalho1.png',
+      image: '/img/trabalho1.png',
       tech: ['Next.js', 'Tailwindcss', 'Javascript']
     },
     {
       title: 'Website Delivery',
       description: 'Plataforma dedicada a uma empresa especializada em serviços de delivery.',
-      image: '/src/img/trabalho2.png',
+      image: '/img/trabalho2.png',
       tech: ['HTML', 'CSS', 'SCSS', 'Javascript']
     },
     {
       title: 'IMovi',
       description: 'Website para uma empresa especializada em venda de imóveis.',
-      image: '/src/img/trabalho3.png',
+      image: '/img/trabalho3.png',
       tech: ['React', 'Javacript', 'Bootstrap','Sass']
     }
   ];
@@ -129,7 +129,7 @@ function App() {
         <nav className="container mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2 text-red-500">
-            <img src="/src/img/logo.png" width={170} alt="Logo" />
+            <img src="/img/logo.png" width={170} alt="Logo" />
             </div>
             <div className="space-x-8">
               <button onClick={() => scrollToSection('home')} className="text-white hover:text-[#8638ff] font-medium">Home</button>
