@@ -13,12 +13,15 @@ import {
   Instagram,
   ArrowUp,
   ChevronDown,
-  Laptop
+  Laptop,
+  Menu,
+  X
 } from 'lucide-react';
 
 function App() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,6 +40,7 @@ function App() {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', duration: 1000 });
+      setIsMenuOpen(false);
     }
   };
 
@@ -129,22 +133,50 @@ function App() {
         <nav className="container mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2 text-red-500">
-            <img src="/img/logo.png" width={170} alt="Logo" />
+              <img src="/img/logo.png" width={170} alt="Logo" />
             </div>
-            <div className="space-x-8">
+
+            {/* Menu para Desktop */}
+            <div className="hidden md:flex space-x-8">
               <button onClick={() => scrollToSection('home')} className="text-white hover:text-[#8638ff] font-medium">Home</button>
               <button onClick={() => scrollToSection('projects')} className="text-white hover:text-[#8638ff] font-medium">Projetos</button>
               <button onClick={() => scrollToSection('process')} className="text-white hover:text-[#8638ff] font-medium">Processos</button>
               <button onClick={() => scrollToSection('about')} className="text-white hover:text-[#8638ff] font-medium">Sobre</button>
               <button onClick={() => scrollToSection('faq')} className="text-white hover:text-[#8638ff] font-medium">FAQ</button>
             </div>
-            <div>
+
+            <div className="hidden md:block">
               <a target='_blank' href="https://calendly.com/vorteklabs/30min" className="inline-flex items-center bg-white text-sm text-[#18181b] px-3 py-2 rounded-full font-semibold hover:bg-blue-50 transition-colors">
                 Agende uma Reunião
                 <ArrowRight className="ml-2" size={15} />
               </a>
             </div>
+
+            {/* Botão do Menu Hamburger */}
+            <button 
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden text-white hover:text-[#8638ff]"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
+
+          {/* Menu Mobile */}
+          {isMenuOpen && (
+            <div className="md:hidden bg-[#313135] absolute top-16 left-0 right-0 p-4 shadow-lg">
+              <div className="flex flex-col space-y-4">
+                <button onClick={() => scrollToSection('home')} className="text-white hover:text-[#8638ff] font-medium text-left">Home</button>
+                <button onClick={() => scrollToSection('projects')} className="text-white hover:text-[#8638ff] font-medium text-left">Projetos</button>
+                <button onClick={() => scrollToSection('process')} className="text-white hover:text-[#8638ff] font-medium text-left">Processos</button>
+                <button onClick={() => scrollToSection('about')} className="text-white hover:text-[#8638ff] font-medium text-left">Sobre</button>
+                <button onClick={() => scrollToSection('faq')} className="text-white hover:text-[#8638ff] font-medium text-left">FAQ</button>
+                <a target='_blank' href="https://calendly.com/vorteklabs/30min" className="inline-flex items-center bg-white text-sm text-[#18181b] px-3 py-2 rounded-full font-semibold hover:bg-blue-50 transition-colors w-fit">
+                  Agende uma Reunião
+                  <ArrowRight className="ml-2" size={15} />
+                </a>
+              </div>
+            </div>
+          )}
         </nav>
       </header>
 
